@@ -53,3 +53,8 @@ Et le resultat s'es't affiché
 
 ![9](https://user-images.githubusercontent.com/63167717/148782222-ad9ef1a5-9da0-46cd-9069-2d5b6640d904.JPG)
 
+## Projet
+
+Mise en place de la BDD restaurants sur atlas et connection a compass
+
+Mise a en place du porjets sur react et choix du template avec mise en place du Git commun. Connection du site web a la base de données. 
