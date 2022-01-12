@@ -75,7 +75,7 @@ Rercherche des clients masculin pour leur faire une offre sur un type de pizza
 
 ![cmd find](https://user-images.githubusercontent.com/63167717/149182049-0e4c4a2c-e59d-4d51-8d90-e5c7b859bcb5.png)
 
-### 3: Les opérateurs
+### 3 : Les opérateurs
 
 Les opérateur permettent de traiter les informations contenus dans les documents 
 
@@ -135,4 +135,13 @@ _id: ObjectId("61dc0fa2350e86d7efb69f6b"),
   restaurant_id: '40364296' 
 } 
 ```
+Dans notre projet nous pourrions faire une recherche des personne de plus de 18 ans, habitant sur lyon, ayant fait plus de 10 passage pour faire une compagne de mailling proposant une réduction spécial 
+
+``` db.cleints.find({"age" : { $gte : "18" }, "ville : "lyon, "passage": { $gt : "10"}}) ```
+
+D'autres opérateur existe, en voici une liste non exhaustive :
+
+![image](https://user-images.githubusercontent.com/63167717/149186858-d7c0b0f2-8e33-4616-b589-e8283f65a3cc.png)
+
+### 4 : Les données GéoJson
 
