@@ -108,7 +108,7 @@ Plusieur opérateur peuvent être juxtaposer aux seins de la même requete
 
 Exemple :
 
-```db.restaurants.find({"restaurant_id" : { $eq : "40364296" }, "borough": { $eq : "Bronx"}})```
+``` db.restaurants.find({"restaurant_id" : { $eq : "40364296" }, "borough": { $eq : "Bronx"}}) ```
 
 La premiere partie de la commande aura la même fonction que la précedente, nous filtrerons la recherche en plus avec l'arrondissement ("borought") du "Bronx"
 
