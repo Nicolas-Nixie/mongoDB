@@ -102,7 +102,7 @@ Cet opérateur $eq, permmet de conmparer l'égalité ainsi que le type. Cette co
   ],
   name: 'Kosher Island',
   restaurant_id: '40356442' 
-}```
+} ```
 
 Plusieur opérateur peuvent être juxtaposer aux seins de la même requete 
 
@@ -130,4 +130,4 @@ La premiere partie de la commande aura la même fonction que la précedente, nou
   ],
   name: 'Happy Garden',
   restaurant_id: '40364296' 
-}```
+} ```
