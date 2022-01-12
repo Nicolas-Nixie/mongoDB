@@ -104,3 +104,35 @@ Cet opérateur $eq, permmet de conmparer l'égalité ainsi que le type. Cette co
   restaurant_id: '40356442' 
 }
 ```
+
+
+Plusieur opérateur peuvent être juxtaposer aux seins de la même requete 
+
+Exemple :
+
+``` db.restaurants.find({"restaurant_id" : { $eq : "40364296" }, "borough": { $eq : "Bronx"}}) ```
+
+La premiere partie de la commande aura la même fonction que la précedente, nous filtrerons la recherche en plus avec l'arrondissement ("borought") du "Bronx"
+
+```
+_id: ObjectId("61dc0fa2350e86d7efb69f6b"),
+  address: {
+    building: '277',
+    coord: [ -73.8941893, 40.8634684 ],
+    street: 'East Kingsbridge Road',
+    zipcode: '10458' 
+  },
+  borough: 'Bronx',
+  cuisine: 'Chinese',
+  grades:[
+     { date: 2014-03-03T00:00:00.000Z, grade: 'A', score: 10 },
+     { date: 2013-09-26T00:00:00.000Z, grade: 'A', score: 10 },
+     { date: 2013-03-19T00:00:00.000Z, grade: 'A', score: 10 },
+     { date: 2012-08-29T00:00:00.000Z, grade: 'A', score: 11 },
+     { date: 2011-08-17T00:00:00.000Z, grade: 'A', score: 13 } 
+  ],
+  name: 'Happy Garden',
+  restaurant_id: '40364296' 
+} 
+```
+
