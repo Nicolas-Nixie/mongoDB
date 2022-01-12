@@ -63,6 +63,10 @@ Et le resultat s'es't affiché
 
 ![9](https://user-images.githubusercontent.com/63167717/148782222-ad9ef1a5-9da0-46cd-9069-2d5b6640d904.JPG)
 
+### 2 : Les premieres commandes mongo
+
+
+
 ### Projet
 
 Mise en place de la BDD restaurants sur atlas et connection a compass
