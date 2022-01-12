@@ -1,9 +1,15 @@
-# mongoDB
+# **mongoDB**
 TP individuel MongoDB
 
 ## Sommaire
 
+- 1 : Mise en place de la base de donnée
+- 2 : Les premieres commandes mongo
+- 3 : Les opérateurs
+- 4 : Les données GéoJson
+- 5 : Les agragateurs
 
+# 1 : Mise en place de la base de donnée
 
 ## Etape 1
 
