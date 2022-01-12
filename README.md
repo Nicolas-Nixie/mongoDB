@@ -65,10 +65,14 @@ Et le resultat s'es't affiché
 
 ### 2 : Les premieres commandes mongo
 
+Créeation d'un index pour trier les villes par codes postal, le but étant de trier pour pouvoir identifier les zones de chalandise et faire un publipostage ou une campagne de mailing avec une offre pour attirer des client.
 
+![index classement ville cleints](https://user-images.githubusercontent.com/63167717/149179145-fa58c140-5f87-43d9-86ac-3bc70d95d243.png)
 
-### Projet
+Rercherche des clients masculin pour leur faire une offre sur un type de pizza 
 
-Mise en place de la BDD restaurants sur atlas et connection a compass
+```db.clients.find({sexe: "M"})```
 
-Mise a en place du porjets sur react et choix du template avec mise en place du Git commun. Connection du site web a la base de données. 
+![cmd find](https://user-images.githubusercontent.com/63167717/149182049-0e4c4a2c-e59d-4d51-8d90-e5c7b859bcb5.png)
+
+### 3: Les opérateurs
