@@ -84,7 +84,7 @@ Exemple :
 
 Cet opérateur $eq, permmet de conmparer l'égalité ainsi que le type. Cette commande affichera donc les "restaurant_id" correspondant a la valeur et au type "40356442"
 
-```{ 
+``` { 
   _id: ObjectId("61dc0fa2350e86d7efb69f39"),
   address: {
     building: '2206',
