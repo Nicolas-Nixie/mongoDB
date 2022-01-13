@@ -4,9 +4,9 @@ TP individuel MongoDB
 ### Sommaire
 
 - 1 : Mise en place de la base de donnée
-- 2 : Les premieres commandes mongo
-- 3 : Les opérateurs
-- 4 : Les données GéoJson
+- 2 : Mise en place d'un index localisation client et recherche client spécial
+- 3 : Utilisation des opérateur pour filtrer les documents
+- 4 : Utiliser les données GéoJson pour trouver la zone de chalandise et identifier la provenace des clients
 - 5 : Les agragateurs
 
 ## 1 : Mise en place de la base de donnée
@@ -63,11 +63,11 @@ Et le resultat s'es't affiché
 
 ![9](https://user-images.githubusercontent.com/63167717/148782222-ad9ef1a5-9da0-46cd-9069-2d5b6640d904.JPG)
 
-### 2 : Les premieres commandes mongo
+### 2 : Mise en place d'un index localisation client et recherche client spécial
 
 Créeation d'un index pour trier les villes par codes postal, le but étant de trier pour pouvoir identifier les zones de chalandise et faire un publipostage ou une campagne de mailing avec une offre pour attirer des client.
 
-![index classement ville cleints](https://user-images.githubusercontent.com/63167717/149179145-fa58c140-5f87-43d9-86ac-3bc70d95d243.png)
+![index classement ville clients](https://user-images.githubusercontent.com/63167717/149179145-fa58c140-5f87-43d9-86ac-3bc70d95d243.png)
 
 Rercherche des clients masculin pour leur faire une offre sur un type de pizza 
 
@@ -75,12 +75,12 @@ Rercherche des clients masculin pour leur faire une offre sur un type de pizza
 
 ![cmd find](https://user-images.githubusercontent.com/63167717/149182049-0e4c4a2c-e59d-4d51-8d90-e5c7b859bcb5.png)
 
-### 3 : Les opérateurs
+### 3 : Utilisation des opérateur pour filtrer les documents
 
-Les opérateur permettent de traiter les informations contenus dans les documents 
+Les opérateur permettent de traiter les informations contenus dans les documents ; ici nous applicons un filtre afin de d'indentifer chaque restaurant et surtout lesquels sont les plus fréquentés.
 
 Exemple :
-```db.restaurants.find({"restaurant_id" : { $eq : "40356442" }})```
+```db.restaurants.find({"restaurant_id" : { $eq : "40356442" }})``` 
 
 Cet opérateur $eq, permmet de conmparer l'égalité ainsi que le type. Cette commande affichera donc les "restaurant_id" correspondant a la valeur et au type "40356442"
 
@@ -106,7 +106,7 @@ Cet opérateur $eq, permmet de conmparer l'égalité ainsi que le type. Cette co
 ```
 
 
-Plusieur opérateur peuvent être juxtaposer aux seins de la même requete 
+Plusieur opérateur peuvent être juxtaposer aux seins de la même requete, c'est ici que nous pouvons les reunirs par arrondissement.
 
 Exemple :
 
@@ -143,5 +143,24 @@ D'autres opérateur existe, en voici une liste non exhaustive :
 
 ![image](https://user-images.githubusercontent.com/63167717/149186858-d7c0b0f2-8e33-4616-b589-e8283f65a3cc.png)
 
-### 4 : Les données GéoJson
+### 4 : Utiliser les données GéoJson pour trouver la zone de chalandise et identifier la provenace des clients
+
+Après avoir converti les addresse en ccordonée GPS, on les ajoutent au champs aux documents de la colection client.
+Ensuite nous utilison les codes postaux des clients pour faire comme premier filtre et nous utilison les coordonée GeoJson pour faire un figure sur la map pour identifier notre zone de chalandise physqiquement sur la carte et établir une campagne de publipostage interne et externe a la zone.
+
+```
+{
+  "type": "Polygon", 
+  "coordinates": 
+   [
+        [
+           [35, 10], [45, 45], [15, 40], [10, 20], [35, 10]  
+        ],
+        [
+          [20, 30], [35, 35], [30, 20], [20, 30] 
+        ]
+   ] 
+}
+```
+
 
