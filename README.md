@@ -7,7 +7,7 @@ TP individuel MongoDB
 - 2 : Mise en place d'un index localisation client et recherche client spécial
 - 3 : Utilisation des opérateur pour filtrer les documents
 - 4 : Utiliser les données GéoJson pour trouver la zone de chalandise et identifier la provenace des clients
-- 5 : Les agragateurs
+- 5 : Les agragateurs pour affiner nos recherche au sein de notre clientelle
 
 ## 1 : Mise en place de la base de donnée
 
@@ -162,5 +162,114 @@ Ensuite nous utilison les codes postaux des clients pour faire comme premier fil
    ] 
 }
 ```
+### 5 : Les agragateurs pour affiner nos recherche au sein de notre clientelle
 
+Pour avvoir un programme de fildélité le plus complets ppossible nous demanderons  : mail, le nom, le prenom, date de naissance , adresse, le pays, la ville , le sexe , le status social.
+Chaque donnée de consomation est aussi enrgistrer dans la base  : la date, les article acheter, le prix total, le prix par categorie de produit, le nombre de points générer. 
 
+Nous utilison alors les commandes suivantes :
+
+```
+db.clients.aggregate(
+   [
+     {
+       $project:
+         {
+           _id: "$idClient",
+           moyenPanier: { $avg: "$panier"  },
+         }
+     }
+   ]
+)
+```
+Cette commande calcule le panier moyen avec le resultat suivant :
+
+```
+[
+  {
+    "_id": 656565,
+    "moyenPanier": 59.333333333333336
+  },
+  {
+    "_id": 606060,
+    "moyenPanier": 34
+  }
+]
+```
+Le panier moyen des clients totaux nous permettra de connaitre la performence de nos ventes :
+
+```
+db.clients.aggregate(
+   [
+     {
+       $project:
+         {
+           _id: "$idClient",
+           moyenPanier: { $avg: "$panier"  },
+         }
+     }, {
+         $group: {
+             _id: "_id",
+             moyenne : { $avg: "$moyenPanier"},
+         }
+     }
+   ]
+)
+```
+Nous pouvons auusi affecter une action commercriale selon le nombre de passage :
+
+```
+db.clients.aggregate(
+   [
+     {
+       $project:
+         {
+           _id: "$idClient",
+           Nombreachat: { $size: "$panier"  },
+         }
+     }
+   ]
+)
+```
+
+Nous allons améliorer le prgramme de fidélité en regroupant le client par ville ainsi que  par nombre de point. Les personne ayant peux de point sont des cleint a viser pour des campagnes publicitainre.
+Par exemple : 
+
+```
+
+db.client.aggregate([{
+  $group :{
+  _id: "$city",
+  countSmaller: { $sum : {$cond: [{ $lte : ["$points" , 250000]}, 1 , 0]}},
+  countBigger: { $sum : { $cond :[{$gt: ["points", 250000]}, 1,0]}}
+  }}])
+  
+```
+
+Le résultat obtenu est :
+
+```
+
+{ _id: 'Lyon', countSmaller: 9172, countBigger: 36124 }
+{ _id: 'Paris', countSmaller: 9043, countBigger: 35876 }
+{ _id: 'Marseille', countSmaller: 8961, countBigger: 35735 }
+
+```
+
+Nous pourrions aussi diviser le nombre de point par le nombre de passage afin de savoir quel quantité d'article ou qu'elle valeur d'article in achète pour donner des bon cadeau a ceux qui prenne le plus et viser ceux qui prenne le moins par des promotions.
+
+Enfin une action commerciales importante peux être menés pour l'anniversaire des client en les identifiant de cette manière : 
+
+```
+db.clients.aggregate(
+   [
+     {
+       $project:
+         {
+           _id: "$idClient",
+           Nombreachat: { $size: "$panier"  },
+         }
+     }
+   ]
+)
+```
